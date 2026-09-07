@@ -1,0 +1,56 @@
+name: TabBarDemo
+options:
+  deploymentTarget:
+    iOS: "26.0"
+  xcodeVersion: "26.0"
+packages:
+  MinimizingTabBar:
+    path: .
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    CODE_SIGNING_ALLOWED: NO
+targets:
+  TabBarDemo:
+    type: application
+    platform: iOS
+    sources: [Demo]
+    dependencies:
+      - package: MinimizingTabBar
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sh.harivan.minimizingtabbar.demo
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Fieldnotes
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        TARGETED_DEVICE_FAMILY: "1"
+  TabBarTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests/Unit]
+    dependencies:
+      - target: TabBarDemo
+      - package: MinimizingTabBar
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+  TabBarUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [Tests/UI]
+    dependencies:
+      - target: TabBarDemo
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  TabBarDemo:
+    build:
+      targets:
+        TabBarDemo: all
+    test:
+      targets: [TabBarTests, TabBarUITests]
+      gatherCoverageData: true

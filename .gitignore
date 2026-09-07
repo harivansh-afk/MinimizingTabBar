@@ -1,0 +1,8 @@
+.DS_Store
+.build/
+.swiftpm/
+.worktrees/
+build/
+*.xcuserstate
+xcuserdata/
+media/raw/
