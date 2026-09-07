@@ -1,58 +1,28 @@
 # MinimizingTabBar
 
-A floating SwiftUI tab bar that follows your scroll and returns with a touch.
+The custom tab bar from [TouchTips](https://github.com/harivansh-afk/TouchTips), extracted into a SwiftUI package.
 
-<a href="https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4"><img src="media/preview.gif" alt="Actual TouchTips app: scroll-driven tab bar minimization and restoration" width="320"></a>
+<a href="https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4"><img src="media/preview.gif" alt="The tab bar shrinking and expanding while scrolling in TouchTips" width="320"></a>
 
-[Watch the short interaction](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4) · [Full recording](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-portrait.mp4) · [Poster](media/poster.png)
+Scroll down to shrink it. Reverse direction or touch the bar to bring it back. It follows your finger and snaps into place when you let go. Short lists stay expanded.
 
-Extracted from [TouchTips](https://github.com/harivansh-afk/TouchTips). **The video shows the real TouchTips app**, with fictional simulator data and its original UI. The standalone example below lets you try the extracted component independently.
+**iOS 26+ · Xcode 26+ · Swift 6 · No dependencies**
 
-## The interaction
+## Try it
 
-- Tracks an active drag continuously, shrinking to 85% around its bottom edge.
-- Reversing direction grows the bar from its current size.
-- Releasing snaps in the last meaningful drag direction.
-- Touching the bar restores it while keeping the button's action.
-- Switching tabs restores it. Optional back and search actions sit outside the main capsule.
-- Short content stays expanded. Returning near the top restores the bar.
-- Deceleration and programmatic scrolling do not drive minimization.
+Open `TabBarDemo.xcodeproj`, choose the **TabBarDemo** scheme and an iPhone simulator, then run.
 
-Uses native iOS 26 Liquid Glass and a matched-geometry selection pill. The idea of minimizing a tab bar is established; this component provides the custom layout and drag behavior outside a system `TabView`.
+The video above is TouchTips. The included sample is a smaller app for trying the component on its own.
 
-## Requirements
+## Add it to your app
 
-**iOS 26+, Xcode 26+, Swift 6.** No third-party dependencies, network calls, accounts, or permissions. The demo uses fictional people and places, system fonts, and SF Symbols.
-
-## Run the demo
-
-Open **`TabBarDemo.xcodeproj`**, select the **TabBarDemo** scheme and an iPhone simulator, then Run. The generated project is included so XcodeGen is not needed to try it.
-
-The demo is named **Fieldnotes**. Scroll the people list, reverse direction, tap Places, open a person, and use Back or Search.
-
-For command-line builds:
-
-```sh
-SIMULATOR_ID=$(scripts/simulator.sh)
-scripts/build.sh "$SIMULATOR_ID"
-scripts/test.sh "$SIMULATOR_ID"
-```
-
-`scripts/simulator.sh` creates or reuses a dedicated **MinimizingTabBar Demo** iPhone 17 Pro simulator with an installed iOS 26 runtime. It does not erase other simulators.
-
-## Install
-
-In Xcode, choose **File → Add Package Dependencies** and enter:
+Add this URL as a package dependency in Xcode and select the `MinimizingTabBar` product:
 
 ```
 https://github.com/harivansh-afk/MinimizingTabBar
 ```
 
-Select version **1.0.0** or later and add the `MinimizingTabBar` product. The [canonical Forgejo repository](https://git.harivan.sh/harivansh-afk/MinimizingTabBar) also works as a package URL.
-
-Alternatively, copy the three files in `Sources/MinimizingTabBar` into your app and omit the module import below. Preserve the MIT license notice.
-
-## Use
+Share a `TabBarState` between the bar and your scroll view:
 
 ```swift
 import SwiftUI
@@ -91,42 +61,10 @@ struct Example: View {
 }
 ```
 
-Keep the state in the screen that owns the bar. Pass it to each scrolling tab. Attach `.minimizesTabBarOnScroll(bar)` directly to the vertical `ScrollView` or `List`, and use a bottom safe-area inset to leave room for the bar.
+You can add separate back and search buttons with `leading` and `trailing` actions. Use `onReselect` to scroll to the top, or call `bar.restore()` when navigating. The [sample app](Demo/TabBarDemoApp.swift) shows both.
 
-### Options
+The bar supports Reduce Motion and Reduce Transparency. Attach the scroll modifier directly to a vertical `ScrollView` or `List`.
 
-| Option | Default | Purpose |
-| --- | --- | --- |
-| `TabBarState(travel:)` | `100` points | Drag distance from expanded to minimized |
-| `minimizedScale` | `0.85` | Visual scale; supported range `0.76...1` |
-| `leading` / `trailing` | `nil` | Independent labeled SF Symbol actions |
-| `onReselect` | `nil` | Scroll to top or pop to root when the selected tab is tapped again |
-| `bar.restore(animated:)` | `true` | Restore on your own navigation changes |
-| `bar.progress` | read-only `0...1` | Coordinate another view with the interaction |
+[Tests](VALIDATION.md) · [Recording instructions](recording/README.md) · [Video downloads](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest) · [Forgejo](https://git.harivan.sh/harivansh-afk/MinimizingTabBar)
 
-For example, add `trailing: .init("Search", systemImage: "magnifyingglass") { showSearch = true }`. The demo shows a conditional leading Back action. Each action includes an accessibility label.
-
-The bar supplies labels and selected traits, preserves a minimum 44-point button height at the smallest allowed scale, disables spring/selection animations with Reduce Motion, and uses an opaque surface with Reduce Transparency. Drag tracking remains direct. Hosts should also respect Reduce Motion when calling `restore(animated:)` themselves. Use a small number of items and check their widths in your layout; the component does not replace a full adaptive system tab view.
-
-## Record and export
-
-The primary recording is captured in **TouchTips**, not the standalone Fieldnotes sample. See [recording/README.md](recording/README.md) for the pinned app revision, simulator fixture, and gesture test.
-
-After preparing and building the isolated TouchTips worktree:
-
-```sh
-scripts/record-touchtips.sh /path/to/touchtips-recording-worktree "$SIMULATOR_ID"
-scripts/export.sh  # requires ffmpeg and ffprobe on PATH
-```
-
-The test performs real drags and taps and verifies the bar's rendered size. The export keeps the plain screen recording at its original speed, with no frame, title card, or inset. The standalone sample can still be recorded separately with `scripts/record.sh`.
-
-See [media/README.md](media/README.md) for assets and [SUBMISSION.md](SUBMISSION.md) for the prepared SwiftUX entry and X copy.
-
-Edit `project.yml` and regenerate with `xcodegen generate` if changing the Xcode project. Do not hand-edit the generated project. Source changes need no regeneration when the file list stays the same.
-
-## License and credits
-
-MIT © 2026 Harivansh Rathi. See [LICENSE](LICENSE).
-
-The bar and scroll interaction originate in TouchTips, authored by Harivansh Rathi. This extraction replaces app routing, assets, colors, and animation helpers with a standalone API. The demonstration design and media are included under the same license. Apple framework and symbol usage remains subject to Apple's terms.
+[MIT](LICENSE) © Harivansh Rathi
