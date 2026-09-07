@@ -18,8 +18,8 @@ The form currently only requests a source and author URL. The title, description
 
 ## Media
 
-- `media/demo-x.mp4` — actual TouchTips screen recording
-- `media/demo-portrait.mp4` — actual TouchTips screen recording
+- `media/demo-x.mp4` — 7-second scroll/minimize/restore cut
+- `media/demo-portrait.mp4` — full TouchTips screen recording
 - `media/poster.png` — still frame from the recording
 - `media/screenshot.png` — app screenshot
 - `media/preview.gif` — looping README preview
@@ -40,7 +40,7 @@ https://github.com/harivansh-afk/MinimizingTabBar
 
 Alt text / video description:
 
-> A screen recording of TouchTips. Scrolling down the People list shrinks its floating tab bar; reversing restores it. Tapping People restores the bar and scrolls to the top. Opening Maya Kapoor shows the real person screen and a separate Back button.
+> A screen recording of TouchTips. Scrolling down the People list shrinks its floating tab bar; reversing restores it. Tapping People restores the bar and scrolls to the top.
 
 ## Contributor note
 

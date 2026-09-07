@@ -12,9 +12,13 @@ duration=$(awk -v duration="$duration" 'BEGIN { if (duration < 2) exit 1; printf
 # resize for sharing, and trim the final test-runner teardown margin.
 "$FFMPEG" -v warning -y -i media/raw/simulator.mov -vf 'fps=60,scale=886:1926:flags=lanczos' \
   -t "$duration" -c:v libx264 -preset slow -crf 19 -pix_fmt yuv420p -movflags +faststart -an media/demo-portrait.mp4
-# Preserve the existing download name; both files contain the same plain clip.
-cp media/demo-portrait.mp4 media/demo-x.mp4
+# This edit isolates the scroll/minimize/restore sequence in the current capture.
+# Adjust these offsets when recording a new take.
+SHORT_START=${SHORT_START:-3.8}
+SHORT_DURATION=${SHORT_DURATION:-7}
+"$FFMPEG" -v warning -y -ss "$SHORT_START" -i media/demo-portrait.mp4 -t "$SHORT_DURATION" \
+  -c:v libx264 -preset slow -crf 19 -pix_fmt yuv420p -movflags +faststart -an media/demo-x.mp4
 "$FFMPEG" -v warning -y -ss 0.5 -i media/demo-portrait.mp4 -frames:v 1 -update 1 media/screenshot.png
-cp media/screenshot.png media/poster.png
-"$FFMPEG" -v warning -y -i media/demo-portrait.mp4 \
+"$FFMPEG" -v warning -y -i media/demo-x.mp4 -frames:v 1 -update 1 media/poster.png
+"$FFMPEG" -v warning -y -i media/demo-x.mp4 \
   -filter_complex 'fps=15,scale=320:-1:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3' -loop 0 media/preview.gif
