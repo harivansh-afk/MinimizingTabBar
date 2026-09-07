@@ -10,8 +10,8 @@
 
 Both MP4s use H.264, 60 fps output, YUV 4:2:0 and fast-start metadata, without audio. The original simulator capture uses variable frame timestamps; export resamples these to 60 fps without speeding up the interaction. This is an encoding property, not a device performance benchmark.
 
-Recorded on a dedicated iPhone 17 Pro simulator using iOS 26.5. Fictional demo data; no contact access, remote images, or account setup.
+Recorded in the actual TouchTips app on a dedicated iPhone 17 Pro simulator using iOS 26.5. The data is fictional; the screens, navigation, and tab bar are the app's original implementation.
 
-The footage shows real SwiftUI rendering driven by XCTest swipes and taps. It has no title card, device frame, magnified inset, or other added graphics.
+The footage shows TouchTips rendering its own UI, driven by XCTest swipes and taps. It has no title card, device frame, magnified inset, or other added graphics.
 
-Regenerate with `scripts/record.sh <simulator UUID>` and `scripts/export.sh`. The original source capture stays in ignored `media/raw/`; exported assets are committed. See `SUBMISSION.md` for draft copy.
+Regenerate with `scripts/record-touchtips.sh <TouchTips worktree> <simulator UUID>` and `scripts/export.sh`. See [recording/README.md](../recording/README.md) for preparation. The original source capture stays in ignored `media/raw/`; exported assets are committed. See `SUBMISSION.md` for draft copy.

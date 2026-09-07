@@ -2,11 +2,11 @@
 
 A floating SwiftUI tab bar that follows your scroll and returns with a touch.
 
-<a href="https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4"><img src="media/preview.gif" alt="Real simulator recording of scrolling, tab switching, and navigation" width="320"></a>
+<a href="https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4"><img src="media/preview.gif" alt="Actual TouchTips app: scroll-driven tab bar minimization, restoration, and back navigation" width="320"></a>
 
 [Watch / download the X demo](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4) · [Portrait recording](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-portrait.mp4) · [Poster](media/poster.png)
 
-Extracted from [TouchTips](https://github.com/harivansh-afk/TouchTips). A small, dependency-free component with a runnable example, not an app framework.
+Extracted from [TouchTips](https://github.com/harivansh-afk/TouchTips). **The video shows the real TouchTips app**, with fictional simulator data and its original UI. The standalone example below lets you try the extracted component independently.
 
 ## The interaction
 
@@ -110,14 +110,18 @@ The bar supplies labels and selected traits, preserves a minimum 44-point button
 
 ## Record and export
 
+The primary recording is captured in **TouchTips**, not the standalone Fieldnotes sample. See [recording/README.md](recording/README.md) for the pinned app revision, simulator fixture, and gesture test.
+
+After preparing and building the isolated TouchTips worktree:
+
 ```sh
-SIMULATOR_ID=$(scripts/simulator.sh)
-scripts/build.sh "$SIMULATOR_ID"
-scripts/record.sh "$SIMULATOR_ID"
+scripts/record-touchtips.sh /path/to/touchtips-recording-worktree "$SIMULATOR_ID"
 scripts/export.sh  # requires ffmpeg and ffprobe on PATH
 ```
 
-The UI test performs real drags and taps; it does not animate a mock progress value. `simctl` records the dedicated simulator. The export keeps the plain simulator footage at its original speed, with no frame, title card, or inset. See [media/README.md](media/README.md) for files and [SUBMISSION.md](SUBMISSION.md) for the prepared SwiftUX entry and X copy.
+The test performs real drags and taps and verifies the bar's rendered size. The export keeps the plain screen recording at its original speed, with no frame, title card, or inset. The standalone sample can still be recorded separately with `scripts/record.sh`.
+
+See [media/README.md](media/README.md) for assets and [SUBMISSION.md](SUBMISSION.md) for the prepared SwiftUX entry and X copy.
 
 Edit `project.yml` and regenerate with `xcodegen generate` if changing the Xcode project. Do not hand-edit the generated project. Source changes need no regeneration when the file list stays the same.
 

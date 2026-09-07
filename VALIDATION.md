@@ -12,3 +12,13 @@ Validated September 6, 2026 (America/New_York) using Xcode 26.6 (17F113), an iOS
 The demo is self-contained and has no network dependencies. Accessibility labels, selected traits, Reduce Motion handling, and Reduce Transparency handling are implemented; physical-device VoiceOver and GPU performance were not measured. Recordings are simulator demonstrations, not performance benchmarks.
 
 Reproduce the functional checks with `scripts/build.sh <simulator UUID>` followed by `scripts/test.sh <simulator UUID>`.
+
+## TouchTips recording — September 7, 2026
+
+The primary media now shows the actual TouchTips app at `8ae68aeebfc2450ddd3351e109d07a4256206a88`, with only simulator fixture names changed. No app UI or tab-bar implementation was modified.
+
+- The isolated TouchTips simulator build-for-testing passed.
+- `TabBarRecordingUITests.testRecordTouchTips` passed, including assertions that the Search button shrinks during downward scrolling and returns to its original width after reversal and tab reselect.
+- The test opened Maya Kapoor's person screen and returned using Back.
+- The 20.2-second portrait export was fully decoded without errors and inspected at scrolling, restoration, person-detail, and return stages.
+- The original app source, fixture patch, gesture test, and capture instructions are documented under `recording/`.

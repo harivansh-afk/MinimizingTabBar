@@ -1,0 +1,38 @@
+diff --git a/Sources/TouchTips/Preview/QATestFixture.swift b/Sources/TouchTips/Preview/QATestFixture.swift
+index 67dfb86..996f775 100644
+--- a/Sources/TouchTips/Preview/QATestFixture.swift
++++ b/Sources/TouchTips/Preview/QATestFixture.swift
+@@ -23,21 +23,30 @@
+             try database.writer.write { db in
+                 guard try Person.fetchCount(db) == 0 else { return }
+                 let now = Date.now
++                let showcase = environment["TOUCHTIPS_QA_DATA"] == "showcase"
++                let names = [
++                    "Maya Kapoor", "Jonah Okafor", "Lena Novak", "Dev Patel", "Sofia Chen",
++                    "Oliver James", "Amara Williams", "Tomás Leal", "Rhea Sethi", "Leo Park",
++                    "Isabella Rossi", "Noah Brooks", "Yuki Tanaka", "Eli Martin", "Ava Laurent",
++                    "Finn Clarke", "Luna Reyes", "Kai Anderson", "Nina Shah", "Sam Rivera",
++                    "Zoe Bennett", "Arjun Mehta", "Emma Wilson", "Theo Morgan", "Priya Rao",
++                    "Owen Lee", "Sara Ahmed", "Lucas Silva", "Iris Kim", "Max Turner",
++                ]
+                 var cafe = Place(
+                     key: "qa-cafe",
+                     latitude: 38.0293,
+                     longitude: -78.4767,
+-                    name: "QA Coffee",
++                    name: showcase ? "Grit Coffee" : "QA Coffee",
+                     namedAt: now
+                 )
+-                var park = Place(key: "qa-park", latitude: 38.0405, longitude: -78.5020, name: "QA Park", namedAt: now)
++                var park = Place(key: "qa-park", latitude: 38.0405, longitude: -78.5020, name: showcase ? "The Rotunda" : "QA Park", namedAt: now)
+                 try cafe.insert(db)
+                 try park.insert(db)
+                 let count = environment["TOUCHTIPS_QA_DATA"] == "large" ? 1000 : 30
+                 for index in 0 ..< count {
+                     let id = "qa-person-\(index)"
+                     let start = now.addingTimeInterval(-Double(index + 1) * 86400)
+-                    let name = index == 0 ? "QA Alice" : index == 1 ? "QA Bob" : "QA Person \(String(format: "%04d", index))"
++                    let name = showcase ? names[index % names.count] : index == 0 ? "QA Alice" : index == 1 ? "QA Bob" : "QA Person \(String(format: "%04d", index))"
+                     try Person(contactID: id, name: name, beforeInstall: false, createdAt: start).insert(db)
+                     try Meet(
+                         contactID: id, start: start, end: start, precision: .exact,
