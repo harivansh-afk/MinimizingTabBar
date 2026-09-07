@@ -18,9 +18,9 @@ The form currently only requests a source and author URL. The title, description
 
 ## Media
 
-- `media/demo-x.mp4` — presentation with full phone and synchronized close-up
+- `media/demo-x.mp4` — plain simulator interaction recording
 - `media/demo-portrait.mp4` — plain simulator recording
-- `media/poster.png` — presentation cover
+- `media/poster.png` — still frame from the recording
 - `media/screenshot.png` — app screenshot
 - `media/preview.gif` — looping README preview
 
@@ -40,7 +40,7 @@ https://github.com/harivansh-afk/MinimizingTabBar
 
 Alt text / video description:
 
-> A dark iPhone contact-list demo beside a magnified view of its floating tab bar. Scrolling down shrinks the bar; reversing restores it. Tapping Places expands it and switches screens. Opening a contact reveals a separate Back button.
+> A screen recording of a dark iPhone contact-list demo with a floating tab bar. Scrolling down shrinks the bar; reversing restores it. Tapping Places expands it and switches screens. Opening a contact reveals a separate Back button.
 
 ## Contributor note
 

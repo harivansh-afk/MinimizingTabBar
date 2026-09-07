@@ -2,7 +2,7 @@
 
 A floating SwiftUI tab bar that follows your scroll and returns with a touch.
 
-[![Minimizing Tab Bar — real simulator demo with a synchronized close-up](media/preview.gif)](media/demo-x.mp4)
+<a href="https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4"><img src="media/preview.gif" alt="Real simulator recording of scrolling, tab switching, and navigation" width="320"></a>
 
 [Watch / download the X demo](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4) · [Portrait recording](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-portrait.mp4) · [Poster](media/poster.png)
 
@@ -117,7 +117,7 @@ scripts/record.sh "$SIMULATOR_ID"
 scripts/export.sh  # requires ffmpeg and ffprobe on PATH
 ```
 
-The UI test performs real drags and taps; it does not animate a mock progress value. `simctl` records the dedicated simulator. The export adds an original vector surround and a synchronized crop of the same footage, without changing the interaction speed. See [media/README.md](media/README.md) for files and [SUBMISSION.md](SUBMISSION.md) for the prepared SwiftUX entry and X copy.
+The UI test performs real drags and taps; it does not animate a mock progress value. `simctl` records the dedicated simulator. The export keeps the plain simulator footage at its original speed, with no frame, title card, or inset. See [media/README.md](media/README.md) for files and [SUBMISSION.md](SUBMISSION.md) for the prepared SwiftUX entry and X copy.
 
 Edit `project.yml` and regenerate with `xcodegen generate` if changing the Xcode project. Do not hand-edit the generated project. Source changes need no regeneration when the file list stays the same.
 
