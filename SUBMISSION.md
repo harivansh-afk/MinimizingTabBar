@@ -18,7 +18,7 @@ The form currently only requests a source and author URL. The title, description
 
 ## Media
 
-- `media/demo-x.mp4` — 7-second scroll/minimize/restore cut
+- `media/demo-x.mp4` — Hari’s 3.83-second interaction edit
 - `media/demo-portrait.mp4` — full TouchTips screen recording
 - `media/poster.png` — still frame from the recording
 - `media/screenshot.png` — app screenshot

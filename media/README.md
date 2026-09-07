@@ -2,7 +2,7 @@
 
 | File | Use |
 | --- | --- |
-| `demo-x.mp4` | 7-second cut showing only scrolling, minimization, and restoration; 886 × 1926 |
+| `demo-x.mp4` | Hari’s 3.83-second edit, preserved byte-for-byte; 886 × 1926 |
 | `demo-portrait.mp4` | Full 20-second TouchTips recording; 886 × 1926 |
 | `poster.png` | Still frame from the recording |
 | `screenshot.png` | Still app screenshot |
@@ -16,4 +16,6 @@ The footage shows TouchTips rendering its own UI, driven by XCTest swipes and ta
 
 Regenerate with `scripts/record-touchtips.sh <TouchTips worktree> <simulator UUID>` and `scripts/export.sh`. See [recording/README.md](../recording/README.md) for preparation. The original source capture stays in ignored `media/raw/`; exported assets are committed. See `SUBMISSION.md` for draft copy.
 
-The short cut uses seconds 3.8–10.8 of the full recording, at original speed. It excludes the person-detail navigation and most idle time. Set `SHORT_START` and `SHORT_DURATION` when exporting a different take.
+The main clip is Hari’s manually shortened `demo-x (1).mp4`, adopted without re-encoding. Its SHA-256 is recorded below. The export script preserves this clip and generates the poster and GIF from it; set `SHORT_VIDEO=/path/to/approved-edit.mp4` to replace it.
+
+Main clip SHA-256: `219d0065b9ccbfd0a220da75f09430ee88c0f707287256f27c6708179b3806c1`

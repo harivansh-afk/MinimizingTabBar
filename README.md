@@ -4,7 +4,7 @@ A floating SwiftUI tab bar that follows your scroll and returns with a touch.
 
 <a href="https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4"><img src="media/preview.gif" alt="Actual TouchTips app: scroll-driven tab bar minimization and restoration" width="320"></a>
 
-[Watch the 7-second interaction](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4) · [Full recording](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-portrait.mp4) · [Poster](media/poster.png)
+[Watch the short interaction](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-x.mp4) · [Full recording](https://github.com/harivansh-afk/MinimizingTabBar/releases/latest/download/demo-portrait.mp4) · [Poster](media/poster.png)
 
 Extracted from [TouchTips](https://github.com/harivansh-afk/TouchTips). **The video shows the real TouchTips app**, with fictional simulator data and its original UI. The standalone example below lets you try the extracted component independently.
 
